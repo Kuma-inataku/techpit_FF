@@ -1,6 +1,7 @@
 <?php
 
 class Human{
+    //プロパティ
     const MAX_HITPOINT = 100;
     public $name;
     public $hitPoint =100;
@@ -9,9 +10,9 @@ class Human{
     //メソッド
     //攻撃メソッド
     public function doAttack($enemy){
-        echo "『" . $this->name ."』の攻撃！\r\n";
-        echo"『. $enemy->name』に" . $this->attackPoint . "のダメージ！\r\n";
-        $enemy->tookDamege($this->attackPoint);
+        echo "『" . $this->name . "』の攻撃！\r\n";
+        echo "【" . $enemy->name . "】に " . $this->attackPoint . "のダメージ！\r\n";
+        $enemy->tookDamage($this->attackPoint);
     }
     //ダメージメソッド
     public function tookDamage($damage){
