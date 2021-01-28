@@ -1,5 +1,6 @@
 <?php
 
+require_once('./classes/Lives.php');
 require_once('./classes/Human.php');
 require_once('./classes/Enemy.php');
 require_once('./classes/Brave.php');
@@ -12,13 +13,22 @@ require_once('./classes/Message.php');
 // $tiida = new Brave('ティーダ');
 $members = array();
 $members[]=new Brave('ティーダ');
-$members[]=new BlackMage('ユウナ');
-$members[]=new WhiteMage('ルール―');
+$members[]=new WhiteMage('ユウナ');
+$members[]=new BlackMage('ルール―');
 
 $enemies = array();
 $enemies[] = new Enemy('ゴブリン',20);
 $enemies[] = new Enemy('ボム', 25);
 $enemies[] = new Enemy('モルポル',30);
+
+//↓に変更は可能か
+
+// $members = array('ティーダ','ユウナ','ルール―');
+
+// $goblin = new Enemy('ゴブリン',20);
+// $bom = new Enemy('ボム',25);
+// $molpol = new Enemy('モルポル',30);
+// $enemies = array($goblin,$bom,$molpol);
 
 //ターン数
 $turn = 1;
@@ -29,7 +39,7 @@ $messageObj = new Message;
 
 //終了条件の判定
 function isFinish($objects){
-    $deathCnt = 0;
+    $deathCnt = 0; //HPが0以下の仲間の数
     foreach($objects as $object){
         if($object->getHitPoint()>0){
             return false;
