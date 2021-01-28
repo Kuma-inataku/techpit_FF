@@ -20,7 +20,8 @@ $loader->register();
 //インスタンス化
 // $tiida = new Brave('ティーダ');
 $members = array();
-$members[]=new Brave(CharacterName::TIIDA);
+// $members[]=new Brave(CharacterName::TIIDA);
+$members[]=Brave::getInstance(CharacterName::TIIDA);
 $members[]=new WhiteMage(CharacterName::YUNA);
 $members[]=new BlackMage(CharacterName::RULU);
 
@@ -28,15 +29,6 @@ $enemies = array();
 $enemies[] = new Enemy(EnemyName::GOBLINS,20);
 $enemies[] = new Enemy(EnemyName::BOMB, 25);
 $enemies[] = new Enemy(EnemyName::MORBOL,30);
-
-//↓に変更は可能か
-
-// $members = array('ティーダ','ユウナ','ルール―');
-
-// $goblin = new Enemy('ゴブリン',20);
-// $bom = new Enemy('ボム',25);
-// $molpol = new Enemy('モルポル',30);
-// $enemies = array($goblin,$bom,$molpol);
 
 //ターン数
 $turn = 1;

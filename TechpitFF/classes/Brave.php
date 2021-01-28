@@ -5,9 +5,20 @@ class Brave extends Human{
     private $hitPoint =self::MAX_HITPOINT;
     private $attackPoint = 30;
     
+    private static $instance;
+    
     //コンストラクタ
-    public function __construct($name){
+    // public function __construct($name){
+    private function __construct($name){
         parent::__construct($name, $this->hitPoint,$this->attackPoint);
+    }
+    
+    // シングルトンで常にインスタンスは一つしか生成しない
+    public static function getInstance($name){
+        if(empty(self::$instance)){
+            self::$instance = new Brave($name);
+        }
+        return self::$instance;
     }
 
     //メソッド
