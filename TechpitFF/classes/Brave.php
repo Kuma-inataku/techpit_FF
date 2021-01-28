@@ -2,7 +2,7 @@
 class Brave extends Human{
     //プロパティ
     const MAX_HITPOINT = 120;
-    public $hitPoint =self::MAX_HITPOINT;
+    private $hitPoint =self::MAX_HITPOINT;
     private $attackPoint = 30;
     
     //コンストラクタ
@@ -13,16 +13,25 @@ class Brave extends Human{
     //メソッド
     //攻撃メソッド
     public function doAttack($enemies){
-        if($this->hitPoint<=0){
+        //自分のHPが0以上か、敵のHPが0以上かなどをチェックするメソッドを用意。
+        if (!$this->isEnableAttack($enemies)){
             return false;
         }
-        $enemyIndex= rand(0,count($enemies) - 1);
-        $enemy = $enemies[$enemyIndex];
+        //ターゲットの決定
+        $enemy = $this->selectTarget($enemies);
+        
+        // if($this->hitPoint<=0){
+        //     return false;
+        // }
+        // $enemyIndex= rand(0,count($enemies) - 1);
+        // $enemy = $enemies[$enemyIndex];
+        
+        //乱数の発生
         if(rand(1,3) === 1){
             echo "『" . $this->getName() . "』のスキルが発動した！\r\n";
             echo "『ぜんりょくぎり』！！\r\n";
             echo "【" . $enemy->getName(). "】に " . $this->attackPoint * 1.5 . "のダメージ！\r\n";
-            // $enemy->tookDamage($this->attackPoint *1.5);
+            $enemy->tookDamage($this->attackPoint *1.5);
         }else{
             parent::doAttack($enemies);
         }
